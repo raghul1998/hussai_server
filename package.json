@@ -3,8 +3,9 @@
   "name": "dashboard-node-server-app",
   "version": "1.0.0",
   "description": "HushAI dashboard node server app",
-  "main": "index.js",
+  "main": "chat-engine.js",
   "scripts": {
+    "start": "node chat-engine.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Raghul",
