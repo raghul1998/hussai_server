@@ -54,6 +54,10 @@ function matchEmailsWithKeywords(query, emails) {
     return relevantEmails;
 }
 
+app.get('/', (req, res) => {
+    res.json({response: 'Server up and running'})
+});
+
 app.post('/search', async (req, res) => {
     const userQuery = req.body.query;
 
@@ -67,11 +71,12 @@ app.post('/search', async (req, res) => {
             // Construct email context for LLM prompt
             const emailContext = relevantEmails[0]._doc.content;
             // Construct prompt for LLM
-            // const prompt = `User Query: ${userQuery} | Email Content: ${emailContext} | Response:`;
+            // const prompt = `User Query: ${userQuery} | Email Content: ${emailContext} |
+            // Response:`;
             const messages = [
-                { role: 'system', content: 'You are a helpful assistant.' },
-                { role: 'user', content: userQuery },
-                { role: 'assistant', content: `Email Content: ${emailContext}` },
+                {role: 'system', content: 'You are a helpful assistant.'},
+                {role: 'user', content: userQuery},
+                {role: 'assistant', content: `Email Content: ${emailContext}`},
             ];
 
             // Generate response using GPT-3
