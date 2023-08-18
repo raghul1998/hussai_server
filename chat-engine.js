@@ -25,11 +25,11 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(cors({
-                 origin: ['http://localhost:3000', 'https://master--emailinsight.netlify.app']
+                 origin: ['http://localhost:3000', 'https://master--emailinsight.netlify.app', 'https://emailinsight.netlify.app']
              }));
 
 app.use((req, res, next) => {
-    const allowedOrigins = ["http://localhost:3000", "https://master--emailinsight.netlify.app"];
+    const allowedOrigins = ["http://localhost:3000", "https://master--emailinsight.netlify.app", "https://emailinsight.netlify.app"];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin)) {
