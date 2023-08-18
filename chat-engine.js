@@ -25,8 +25,23 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(cors({
-                 origin: ['https://master--emailinsight.netlify.app']
+                 origin: ['http://localhost:3000', 'https://master--emailinsight.netlify.app']
              }));
+
+app.use((req, res, next) => {
+    const allowedOrigins = ["http://localhost:3000", "https://master--emailinsight.netlify.app"];
+    const origin = req.headers.origin;
+
+    if (allowedOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin);
+    }
+
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH, OPTIONS");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    next();
+});
 
 app.use(express.json());
 
