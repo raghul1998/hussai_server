@@ -14,9 +14,12 @@ const emailSchema = mongoose.Schema({
 const emailModel = mongoose.model('EmailModel', emailSchema);
 
 const credentials = {
-    client_id: '4673391694-j3gvrj13nhnkir9bhe1dktfsjfik9h3e.apps.googleusercontent.com',
-    client_secret: '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',
-    redirect_uris: ['http://localhost:4000'],
+    // '4673391694-j3gvrj13nhnkir9bhe1dktfsjfik9h3e.apps.googleusercontent.com'
+    client_id: process.env.GMAIL_CLIENT_ID,
+    // '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'
+    client_secret: process.env.GMAIL_CLIENT_SECRET,
+    // http://localhost:4000
+    redirect_uris: [process.env.REDIRECT_URL],
 };
 
 const oAuth2Client = new google.auth.OAuth2(
@@ -26,7 +29,8 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 
 oAuth2Client.credentials = {
-    refresh_token: '1//0gAJyL0Kj7KqTCgYIARAAGBASNwF-L9IrPLXEcIMrdG6vc6gQXd9p_cz9aoW811tTBZ-Swse5sYENmqyq0aisi4Rn645JR8KtEEQ'
+    // '1//0gAJyL0Kj7KqTCgYIARAAGBASNwF-L9IrPLXEcIMrdG6vc6gQXd9p_cz9aoW811tTBZ-Swse5sYENmqyq0aisi4Rn645JR8KtEEQ'
+    refresh_token: process.env.GMAIL_REFRESH_TOKEN
 };
 
 // Create Gmail API client

@@ -6,7 +6,7 @@ import OpenAI from 'openai';
 const CONNECTION_STRING = "mongodb://127.0.0.1:27017/email_database";
 mongoose.connect(CONNECTION_STRING);
 
-const OPEN_AI_KEY = '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';
+const OPEN_AI_KEY = process.env.OPENAI_API_TOKEN;
 //const OPEN_AI_ORG_ID = process.env.OPENAI_ORGANIZATION_ID;
 const openai = new OpenAI({
                               apiKey: OPEN_AI_KEY,
