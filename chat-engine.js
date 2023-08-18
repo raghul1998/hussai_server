@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import OpenAI from 'openai';
 
-const CONNECTION_STRING = "mongodb://127.0.0.1:27017/email_database";
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/email_database';
 mongoose.connect(CONNECTION_STRING);
 
 const OPEN_AI_KEY = process.env.OPENAI_API_TOKEN;
@@ -25,7 +25,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(cors({
-                 origin: "*"
+                 origin: ['https://master--emailinsight.netlify.app']
              }));
 
 app.use(express.json());
